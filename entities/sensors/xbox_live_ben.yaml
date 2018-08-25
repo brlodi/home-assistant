@@ -1,0 +1,17 @@
+platform: rest
+name: Xbox Live (Ben)
+resource: https://xbl.io/api/v2/player/summary
+headers:
+  X-Authorization: !secret api_openxbl_key
+  Accept: application/json
+value_template: >-
+  {% set user = value_json.people[0] %}
+  {% if user.presenceState.casefold() == 'Online'.casefold() %}
+    {% if user.presenceText.casefold() == 'Home'.casefold() %}
+      Online
+    {% else %}
+      {{ user.presenceText }}
+    {% endif %}
+  {% else %}
+    {{ user.presenceState }}
+  {% endif %}

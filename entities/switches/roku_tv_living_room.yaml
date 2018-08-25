@@ -1,0 +1,17 @@
+# We can't quite use a simple RESTful Switch for this because the TV sleeps
+# (and stops responding to API calls) when it's off for a while, so we need
+# extra logic to wake it back up
+platform: template
+switches:
+  living_room_tv:
+    # All this script does is trigger the roku_tv_living_room_wol switch
+    # then follow it up with a PowerOn roku_keypress API call.
+    turn_on:
+      service: script.power_on_living_room_tv
+    turn_off:
+      service: rest_command.roku_keypress
+      data:
+        host: 10.0.0.20
+        key: PowerOff
+    value_template: >-
+      {{ is_state('binary_sensor.roku_tv_living_room', 'on') }}

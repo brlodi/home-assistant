@@ -1,0 +1,2 @@
+url: 'http://{{ host }}:8060/keypress/{{ key }}'
+method: POST

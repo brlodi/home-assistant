@@ -1,0 +1,100 @@
+################################################################################
+# HOME ASSISTANT CONFIGURATION - Benjamin Lodi (brlodi@gmail.com)              #
+################################################################################
+# Running under Hass.io on HassOS                                              #
+# Last tested HassOS version:         1.9                                      #
+# Last tested supervisor version:     127                                      #
+# Last tested Home Assistant version: 0.76.1                                   #
+################################################################################
+homeassistant:
+  name: Home
+  latitude: !secret home-latitude
+  longitude: !secret home-longitude
+  elevation: !secret home-elevation
+  unit_system: imperial
+  time_zone: !secret home-tz
+  auth_providers:
+    - type: homeassistant
+    - type: legacy_api_password
+  customize_glob: !include customize_glob.yaml
+  customize: !include customize.yaml
+
+discovery:
+
+
+
+################################################################################
+# Hardware                                                                     #
+################################################################################
+zwave:
+  usb_path: /dev/ttyUSB0
+  polling_interval: 30000
+  device_config_glob: !include zwave_device_config.yaml
+zha:
+  usb_path: /dev/ttyUSB1
+  database_path: /config/zigbee.db
+
+
+
+################################################################################
+# Front End                                                                    #
+################################################################################
+
+# Core
+auth:
+config:
+frontend:
+history:
+http:
+  base_url: !secret url_home_assistant
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  api_password: !secret ha_api_password
+logbook:
+map:
+updater:
+
+# Integrate Hass.io addons in sidebar
+panel_iframe:
+  pihole:
+    title: Pi-hole
+    icon: mdi:cancel
+    url: !secret url_pihole
+  node_red:
+    title: Node-RED
+    icon: mdi:sitemap
+    url: !secret url_node_red
+
+
+
+################################################################################
+# External Platform Integrations                                               #
+################################################################################
+ios:
+
+
+
+################################################################################
+# Entity & Service Configuration                                               #
+################################################################################
+
+# Front-end Config compatible
+# WARNING: this syntax is mandated by the Config component. DO NOT CHANGE!!
+automation: !include automations.yaml
+script:     !include scripts.yaml
+
+# Domains taking lists of entities
+binary_sensor:  !include_dir_list entities/binary_sensors
+device_tracker: !include_dir_list entities/device_trackers
+media_player:   !include_dir_list entities/media_players
+sensor:         !include_dir_list entities/sensors
+switch:         !include_dir_list entities/switches
+weather:        !include_dir_list entities/weather
+
+# Domains taking dictionaries of named entities (each filename becomes a key)
+group:        !include_dir_named groups
+rest_command: !include_dir_named entities/rest_commands
+zone:         !include_dir_named zones
+
+# Standalone domains
+sun:

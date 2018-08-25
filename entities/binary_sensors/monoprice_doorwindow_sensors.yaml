@@ -1,0 +1,32 @@
+platform: template
+sensors:
+  front_door:
+    friendly_name: Front Door
+    device_class: door
+    value_template: >-
+      {{ not is_state('sensor.monoprice_doorwindow_sensor_front_door_access_control', '23') }}
+  living_room_window:
+    friendly_name: Living Room Window
+    device_class: window
+    value_template: >-
+      {{ not is_state('sensor.monoprice_doorwindow_sensor_living_room_window_access_control', '23') }}
+  bedroom_window:
+    friendly_name: Bedroom Window
+    device_class: window
+    value_template: >-
+      {{ not is_state('sensor.monoprice_doorwindow_sensor_bedroom_window_access_control', '23') }}
+  front_door_tamper:
+    friendly_name: Front Door Sensor Tamper
+    device_class: safety
+    value_template: >-
+      {{ states('sensor.monoprice_doorwindow_sensor_front_door_burglar')|int > 0 }}
+  living_room_window_tamper:
+    friendly_name: Living Room Window Sensor Tamper
+    device_class: safety
+    value_template: >-
+      {{ states('sensor.monoprice_doorwindow_sensor_living_room_window_burglar')|int > 0 }}
+  bedroom_window_tamper:
+    friendly_name: Bedroom Window Sensor Tamper
+    device_class: safety
+    value_template: >-
+      {{ states('sensor.monoprice_doorwindow_sensor_bedroom_window_burglar')|int > 0 }}

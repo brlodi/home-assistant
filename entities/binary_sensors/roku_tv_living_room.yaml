@@ -1,0 +1,6 @@
+# Extract the power status from the TV's RESTful API (it's XML)
+# If the TV is in deep sleep this returns "Unknown", so plan accordingly
+platform: rest
+name: Roku TV Living Room
+resource: http://10.0.0.20:8060/query/device-info
+value_template: "{{ value and '<power-mode>PowerOn</power-mode>' in value }}"

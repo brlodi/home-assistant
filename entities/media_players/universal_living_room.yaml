@@ -1,0 +1,37 @@
+# Since we need more than one switch to fully control the Roku TV we combine all
+# the elements under a Universal Media Player component so it looks like a
+# single entity again.
+platform: universal
+name: Living Room
+children:
+  - media_player.living_room_tv
+state_template: >-
+  {% if is_state('switch.roku_tv_living_room', 'on') %}
+    {{ states('media_player.living_room_tv') }}
+  {% else %}
+    {{ false }}
+  {% endif %}
+commands:
+  turn_on:
+    service: switch.turn_on
+    data:
+      entity_id: switch.roku_tv_living_room
+  turn_off:
+    service: switch.turn_off
+    data:
+      entity_id: switch.roku_tv_living_room
+  volume_up:
+    service: rest_command.roku_keypress
+    data:
+      host: 10.0.0.20
+      key: VolumeUp
+  volume_down:
+    service: rest_command.roku_keypress
+    data:
+      host: 10.0.0.20
+      key: VolumeDown
+  volume_mute:
+    service: rest_command.roku_keypress
+    data:
+      host: 10.0.0.20
+      key: VolumeMute
