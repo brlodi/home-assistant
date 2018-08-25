@@ -223,7 +223,7 @@ sensor.meriadoc_battery_state:
   name:
   platform: ios
   unique_id: state_Meriadoc
-media_player.tv_living_room:
+media_player.roku_tv_living_room:
   config_entry_id:
   name:
   platform: roku

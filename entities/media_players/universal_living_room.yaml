@@ -4,12 +4,12 @@
 platform: universal
 name: Living Room
 children:
-  - media_player.living_room_tv
+  - media_player.roku_tv_living_room
 state_template: >-
   {% if is_state('switch.roku_tv_living_room', 'on') %}
-    {{ states('media_player.living_room_tv') }}
+    {{ states('media_player.roku_tv_living_room') }}
   {% else %}
-    {{ false }}
+    off
   {% endif %}
 commands:
   turn_on:
