@@ -4,11 +4,10 @@
 # Reference: https://github.com/home-assistant/home-assistant/issues/12213#issuecomment-376254680
 hidden: true
 entities:
-  - light.ikea_tradfri_1000lm_entryway:
-  - light.ikea_tradfri_980lm_bathroom_pendant:
-  - light.sengled_element_plus_bedside_lamp_globe:
-  - light.sengled_element_plus_bedside_lamp_standard:
-  - light.sengled_element_plus_dining_nook_pendant_1:
-  - light.sengled_element_plus_dining_nook_pendant_2:
-  - light.sengled_element_plus_dining_nook_pendant_3:
-  - light.sengled_element_plus_living_room_lamp:
+  - light.ikea_tradfri_980lm_bathroom_pendant
+  - light.sengled_element_plus_bedside_lamp_globe
+  - light.sengled_element_plus_bedside_lamp_standard
+  - light.sengled_element_plus_dining_nook_pendant_1
+  - light.sengled_element_plus_dining_nook_pendant_2
+  - light.sengled_element_plus_dining_nook_pendant_3
+  - light.sengled_element_plus_living_room_lamp
