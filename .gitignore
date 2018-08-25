@@ -1,0 +1,21 @@
+# Potentially sensitive information
+secrets.yaml
+options.xml
+.ios.conf
+.uuid
+.automatic/
+.cloud/
+.storage/
+
+# Cruft
+*.log
+*Log.txt
+
+# Databases
+*.db
+*.sqlite
+zwcfg_*.xml
+
+# Node-RED
+node-red/*.backup
+node-red/.sessions
