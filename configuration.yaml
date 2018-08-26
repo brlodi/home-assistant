@@ -92,9 +92,10 @@ switch:         !include_dir_list entities/switches
 weather:        !include_dir_list entities/weather
 
 # Domains taking dictionaries of named entities (each filename becomes a key)
-group:        !include_dir_named groups
-rest_command: !include_dir_named entities/rest_commands
-zone:         !include_dir_named zones
+group:          !include_dir_named groups
+input_datetime: !include_dir_named entities/inputs_datetime
+rest_command:   !include_dir_named entities/rest_commands
+zone:           !include_dir_named zones
 
 # Standalone domains
 sun:
