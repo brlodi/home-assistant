@@ -16,6 +16,7 @@ homeassistant:
   auth_providers:
     - type: homeassistant
     - type: legacy_api_password
+  customize_domain: !include customize_domain.yaml
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
 
