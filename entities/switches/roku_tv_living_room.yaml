@@ -6,6 +6,7 @@ switches:
   roku_tv_living_room:
     # All this script does is trigger the roku_tv_living_room_wol switch
     # then follow it up with a PowerOn roku_keypress API call.
+    friendly_name: Roku TV Living Room Power
     turn_on:
       service: script.power_on_living_room_tv
     turn_off:

@@ -32,7 +32,7 @@ power_on_living_room_tv:
       data:
         entity_id: switch.roku_tv_living_room_wol
     - delay:
-        milliseconds: 100
+        milliseconds: 10
     - service: rest_command.roku_keypress
       data:
         host: 10.0.0.20

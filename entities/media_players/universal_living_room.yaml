@@ -6,10 +6,20 @@ name: Living Room
 children:
   - media_player.roku_tv_living_room
 state_template: >-
-  {% if is_state('switch.roku_tv_living_room', 'on') %}
-    {{ states('media_player.roku_tv_living_room') }}
-  {% else %}
+  {% if not is_state('switch.roku_tv_living_room', 'on') %}
     off
+  {% elif is_state_attr('media_player.roku_tv_living_room', 'source', 'home') %}
+    Idle
+  {% elif is_state_attr('media_player.roku_tv_living_room', 'source', 'Xbox One') %}
+    {% if is_state('sensor.xbox_live_ben', 'Offline') %}
+      Idle
+    {% elif is_state('sensor.xbox_live_ben', 'Online') %}
+      Home
+    {% else %} 
+      {{ states('sensor.xbox_live_ben') }}
+    {% endif %}
+  {% else %}   
+    {{ states('media_player.roku_tv_living_room') }}
   {% endif %}
 commands:
   turn_on:
