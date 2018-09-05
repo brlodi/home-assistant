@@ -1,0 +1,3 @@
+platform: tplink
+name: TP-LINK HS110 - Refrigerator
+host: 10.0.0.141
