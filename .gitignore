@@ -13,8 +13,10 @@ options.xml
 
 # Databases
 *.db
+*.db-*
 *.sqlite
 zwcfg_*.xml
+.homekit.state
 
 # Node-RED
 node-red/*.backup

@@ -20,8 +20,6 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
 
-discovery:
-
 
 
 ################################################################################
@@ -45,6 +43,7 @@ zha:
 auth:
 config:
 frontend:
+hassio:
 history:
 http:
   base_url: !secret url_home_assistant
@@ -71,7 +70,31 @@ panel_iframe:
 ################################################################################
 # External Platform Integrations                                               #
 ################################################################################
+
 ios:
+
+homekit:
+  auto_start: false
+  filter:
+    include_entities:
+      - binary_sensor.bedroom_window
+      - binary_sensor.dome_motion_detector_living_room_sensor
+      - binary_sensor.front_door
+      - binary_sensor.living_room_window
+      - light.ge_jasco_wall_dimmer_bedroom_level
+      - light.ge_jasco_wall_dimmer_dining_nook_level
+      - light.ge_jasco_wall_dimmer_living_room_level
+      - light.ikea_tradfri_1000lm_entryway
+      - media_player.living_room
+      - script.good_night
+      - switch.tplink_hs110__bedroom_fan
+      - switch.tplink_hs110__living_room_ceiling_light
+  entity_config:
+    media_player.living_room:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: toggle_mute
 
 
 
