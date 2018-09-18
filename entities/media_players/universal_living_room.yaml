@@ -5,22 +5,33 @@ platform: universal
 name: Living Room
 children:
   - media_player.roku_tv_living_room
+# This requires a very complicated state template, described as follows:
+#   - if the TV template switch is 'on':
+#     - if the Roku TV state is 'home' or 'idle', system is Idle
+#     - if the Roku TV source is 'Xbox One':
+#       - if the Xbox Live sensor is 'Offline' or 'Online', the system is Idle
+#       - otherwise, the system displays the Xbox Live sensor status (i.e. the active Xbox media)
+#     - otherwise, the system displays the Roku TV's state
+#   - otherwise, the system is Off
 state_template: >-
-  {% if not is_state('switch.roku_tv_living_room', 'on') %}
-    off
-  {% elif is_state_attr('media_player.roku_tv_living_room', 'source', 'home') %}
-    Idle
-  {% elif is_state_attr('media_player.roku_tv_living_room', 'source', 'Xbox One') %}
-    {% if is_state('sensor.xbox_live_ben', 'Offline') %}
-      Idle
-    {% elif is_state('sensor.xbox_live_ben', 'Online') %}
-      Home
-    {% else %} 
-      {{ states('sensor.xbox_live_ben') }}
+  {% if is_state('switch.roku_tv_living_room', 'on') %}
+    {% if is_state('media_player.roku_tv_living_room', 'home') or is_state('media_player.roku_tv_living_room', 'idle') %}
+      idle
+    {% elif is_state_attr('media_player.roku_tv_living_room', 'source', 'Xbox One') %}
+      {% if is_state('sensor.xbox_live_ben', 'Offline') or is_state('sensor.xbox_live_ben', 'Online') %}
+        idle
+      {% else %}
+        {{ states('sensor.xbox_live_ben') }}
+      {% endif %}
+    {% else %}   
+      {{ states('media_player.roku_tv_living_room') }}
     {% endif %}
-  {% else %}   
-    {{ states('media_player.roku_tv_living_room') }}
+  {% else %}
+    off
   {% endif %}
+attributes:
+  source: media_player.roku_tv_living_room|source
+  source_list: media_player.roku_tv_living_room|source_list
 commands:
   turn_on:
     service: switch.turn_on
@@ -45,3 +56,8 @@ commands:
     data:
       host: 10.0.0.20
       key: VolumeMute
+  select_source:
+    service: media_player.select_source
+    data_template:
+      entity_id: media_player.roku_tv_living_room
+      source: '{{ source }}'

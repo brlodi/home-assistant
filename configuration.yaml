@@ -101,6 +101,7 @@ group:          !include_dir_named groups
 input_datetime: !include_dir_named entities/inputs_datetime
 input_number:   !include_dir_named entities/inputs_number
 rest_command:   !include_dir_named entities/rest_commands
+shell_command:  !include_dir_named entities/shell_commands
 timer:          !include_dir_named entities/timers
 zone:           !include_dir_named zones
 
