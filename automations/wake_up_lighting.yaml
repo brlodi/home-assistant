@@ -1,0 +1,144 @@
+- alias: Lighting - Wake Up (Weekday)
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.start_wake_up_lighting
+      to: "on"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 25
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 50
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 75
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 100
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 125
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 150
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 175
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 200
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 225
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 254
+        transition: 58
+
+- alias: Lighting - Wake Up (Weekend)
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.start_wake_up_lighting
+      to: "on"
+  condition:
+    - condition: time
+      weekday:
+        - sat
+        - sun
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 25
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 50
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 75
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 100
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 125
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 150
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 175
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 200
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 225
+        transition: 58
+    - delay: '00:01:30'
+    - service: light.turn_on
+      data:
+        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        brightness: 254
+        transition: 58

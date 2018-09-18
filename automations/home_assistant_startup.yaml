@@ -10,3 +10,19 @@
       data:
         entity_id: switch.flux
 
+# HomeKit purges information for entities that are (from its perspective)
+# removed. That means that, should HomeKit start before ZWave finishes
+# intitializing, HomeKit will forget and remove any ZWave entities it had
+# configured. This is a pain, so we make sure ZWave is ready before starting
+# HomeKit. This causes a bit of a delay before HomeKit access is available, but
+# it avoids obliterating all HomeKit config just because the ZWave component
+# took a few milliseconds too long today.
+- alias: Start HomeKit
+  hide_entity: true
+  trigger:
+    - platform: event
+      event_type: zwave.network_ready
+    - platform: event
+      event_type: zwave.network_complete
+  action:
+    - service: homekit.start

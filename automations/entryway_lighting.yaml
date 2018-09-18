@@ -1,0 +1,119 @@
+# If the front door opens, make sure the light is on and bright.
+- alias: Entryway Light - Door Opened
+  initial_state: True
+  trigger:
+    # When the front door opens
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+  condition:
+    # If we have not already stored a brightness to return to (otherwise we'd
+    # overwrite it when the door is opened again before the timer runs out)
+    - condition: template
+      value_template: >-
+        {{ states('input_number.entryway_light_last_brightness')|int == -1 }}
+  action:
+    # Record the previous brightness so we can restore it later
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.entryway_light_last_brightness
+        value: >-
+          {{ state_attr('light.ikea_tradfri_1000lm_entryway', 'brightness')|int }}
+    # Set the light to full brightness
+    - service: light.turn_on
+      data:
+        entity_id: light.ikea_tradfri_1000lm_entryway
+        brightness: 254
+    # If the automation timer was already running to turn the light back off,
+    # stop it
+    - service: timer.cancel
+      data:
+        entity_id: timer.front_door_light
+
+# If the front door closes, and we have a brightness stored to restore the
+# entryway light to, start a timer
+- alias: Entryway Light - Door Closed
+  initial_state: True
+  trigger:
+    # When the front door closes
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'off'
+  condition:
+    # If we have stored a brightness to return to
+    - condition: template
+      value_template: >-
+        {{ states('input_number.entryway_light_last_brightness')|int >= 0 }}
+  action:
+    # Start the timer
+    - service: timer.start
+      data:
+        entity_id: timer.front_door_light
+
+# If the front door opens while the timer is already running, stop the timer
+- alias: Entryway Light - Door Reopened
+  initial_state: True
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: timer.front_door_light
+      state: 'active'
+  action:
+    - service: timer.cancel
+      data:
+        entity_id: timer.front_door_light
+
+# When the timer finishes, restore the old brightness
+- alias: Entryway Light - Timer Finished
+  initial_state: True
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.front_door_light
+  condition:
+    # If the stored value is -1, something has gone wrong, so just leave the
+    # light as is
+    - condition: template
+      value_template: >-
+        {{ states('input_number.entryway_light_last_brightness')|int != -1 }}
+  action:
+    # Set the light to its previous brightness
+    - service: light.turn_on
+      data_template:
+        entity_id: light.ikea_tradfri_1000lm_entryway
+        brightness: >-
+          {{ states('input_number.entryway_light_last_brightness')|int }}
+        transition: 30
+    # Reset the previous brightness variable
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.entryway_light_last_brightness
+        value: -1
+
+# If the light is manually adjusted while the timer is running, cancel the
+# whole automation and just leave the new settings be
+- alias: Entryway Light - Manual Override
+  initial_state: True
+  trigger:
+    # If the state of the entryway light changes
+    - platform: state
+      entity_id: light.ikea_tradfri_1000lm_entryway
+  condition:
+    # And the time is running to reset it to its previous brightness
+    - condition: state
+      entity_id: timer.front_door_light
+      state: 'active'
+  action:
+    # Cancel the timer
+    - service: timer.cancel
+      data:
+        entity_id: timer.front_door_light
+    # And reset the storage variable
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.entryway_light_last_brightness
+        value: -1
