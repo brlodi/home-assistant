@@ -1,0 +1,17 @@
+name: Bedtime
+entities:
+  light.ge_jasco_wall_dimmer_bedroom_level:
+    state: on
+    brightness_pct: 10
+    transition: 1
+  light.ikea_tradfri_1000lm_entryway:
+    state: off
+    transition: 5
+  light.ge_jasco_wall_dimmer_living_room_level:
+    state: off
+    transition: 7
+  light.ge_jasco_wall_dimmer_dining_nook_level:
+    state: off
+    transition: 10
+  switch.tplink_hs110__living_room_ceiling_light: off
+  media_player.living_room: off

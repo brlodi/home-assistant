@@ -1,0 +1,14 @@
+name: Movie Night
+entities:
+  light.ikea_tradfri_1000lm_entryway:
+    state: off
+    transition: 10
+  light.ge_jasco_wall_dimmer_living_room_level:
+    state: on
+    brightness: 10
+    transition: 10
+  light.ge_jasco_wall_dimmer_dining_nook_level:
+    state: on
+    brightness: 10
+    transition: 10
+  switch.tplink_hs110__living_room_ceiling_light: off
