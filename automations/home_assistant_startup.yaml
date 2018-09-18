@@ -1,0 +1,12 @@
+# We want some entities to be on by default after a HA restart, but HA typically
+# defaults virtual entities to "off", so we explicitly turn them on here.
+- alias: Configure Entities to be On at Startup
+  hide_entity: true
+  trigger:
+    - event: start
+      platform: homeassistant
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.flux
+

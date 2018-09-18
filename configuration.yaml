@@ -79,10 +79,13 @@ ios:
 # Entity & Service Configuration                                               #
 ################################################################################
 
-# Front-end Config compatible
-# WARNING: this syntax is mandated by the Config component. DO NOT CHANGE!!
-automation: !include automations.yaml
-script:     !include scripts.yaml
+# WARNING: this configuration method breaks the editors in the Config component
+# I don't use them because I prefer the logical separation afforded by a
+# one-item-per-file paradigm, instead of a giant list in one file. Unfortunately
+# I still need the Z-Wave configuration panel, so I can't just disable the
+# Config component.
+automation: !include_dir_merge_list automations/
+script:     !include_dir_named scripts/
 
 # Domains taking lists of entities
 binary_sensor:  !include_dir_list entities/binary_sensors
