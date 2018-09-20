@@ -42,10 +42,30 @@
       data:
         entity_id: scene.evening__living_room
 
-- alias: Xbox On
+- alias: Living Room - Media - Xbox Auto-On
   trigger:
     - platform: template
       value_template: >-
         {{ is_state_attr('media_player.living_room', 'source', 'Xbox One') }}
   action:
     - service: shell_command.xbox_one_living_room_wol
+
+- alias: Living Room - Media - Select Xbox Input
+  trigger:
+    - platform: state
+      entity_id: sensor.xbox_live_ben
+      from: "offline"
+  condition:
+    - condition: template
+      value_template: >-
+        {{ not is_state('sensor.xbox_live_ben', 'unavailable') }}
+  action:
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.living_room
+    - delay:
+        seconds: 1
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.living_room
+        source: Xbox One
