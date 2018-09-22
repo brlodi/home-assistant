@@ -52,6 +52,19 @@ http:
   api_password: !secret ha_api_password
 logbook:
 map:
+recorder:
+  purge_keep_days: 8
+  exclude:
+    domains:
+      - automation
+      - scene
+      - script
+      - updater
+      - weblink
+    entities:
+      - sensor.date
+      - sensor.day_of_week
+      - sensor.time
 updater:
 
 # Integrate Hass.io addons in sidebar
