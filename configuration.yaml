@@ -60,10 +60,6 @@ panel_iframe:
     title: Pi-hole
     icon: mdi:cancel
     url: !secret url_pihole
-  node_red:
-    title: Node-RED
-    icon: mdi:sitemap
-    url: !secret url_node_red
 
 
 
