@@ -1,5 +1,6 @@
 # Extract the power status from the TV's RESTful API (it's XML)
 platform: rest
 name: Roku TV Living Room
+device_class: power
 resource: http://10.0.0.20:8060/query/device-info
 value_template: "{{ value and '<power-mode>PowerOn</power-mode>' in value }}"
