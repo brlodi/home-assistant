@@ -10,6 +10,7 @@ options.xml
 # Cruft
 *.log
 *Log.txt
+__pycache__/
 
 # Databases
 *.db
