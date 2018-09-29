@@ -1,0 +1,4 @@
+---
+# prep_homekit:
+#   module: prep_homekit
+#   class: PrepareHomeKit
