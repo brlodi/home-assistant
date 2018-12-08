@@ -14,61 +14,61 @@
   action:
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 25
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 50
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 75
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 100
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 125
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 150
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 175
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 200
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 225
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 254
         transition: 58
 
@@ -85,60 +85,60 @@
   action:
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 25
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 50
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 75
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 100
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 125
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 150
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 175
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 200
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 225
         transition: 58
     - delay: '00:01:30'
     - service: light.turn_on
       data:
-        entity_id: light.ge_jasco_wall_dimmer_bedroom_level
+        entity_id: light.ge_dimmer_level_bedroom
         brightness: 254
         transition: 58

@@ -1,5 +1,5 @@
 # Switches should look like switches, not light bulbs.
-"light.ge_jasco_wall_*_*_level":
+"light.ge_dimmer_level_*":
   icon: mdi:light-switch
 
 # Dome Motion Detecors generate a couple extra entities that aren't actually
@@ -23,5 +23,5 @@
 # Sengled Element Plus bulbs report some sort of weird sensor value. I think
 # it's supposed to be an ID of some sort, since the values never change. We
 # don't need them cluttering things up.
-"sensor.sengled_element_plus_*":
+"sensor.sengled_z01a19nae26_*_1_1794":
   hidden: true

@@ -1,0 +1,5 @@
+platform: group
+name: All Lights
+entities:
+  - light.all_wall_switches
+  - light.all_color_temperature_lights

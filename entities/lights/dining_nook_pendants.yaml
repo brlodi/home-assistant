@@ -1,0 +1,6 @@
+platform: group
+name: Dining Nook Pendants
+entities:
+  - light.sep_dining_nook_bottom
+  - light.sep_dining_nook_middle
+  - light.sep_dining_nook_top

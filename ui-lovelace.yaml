@@ -9,8 +9,8 @@ views:
             image: /local/Living Room@2x.png
             entities:
               - media_player.living_room
-              - light.ge_jasco_wall_dimmer_living_room_level
-              - light.ge_jasco_wall_dimmer_dining_nook_level
+              - light.ge_dimmer_level_living_room
+              - light.ge_dimmer_level_dining_nook
               - binary_sensor.living_room_window
               - binary_sensor.dome_motion_detector_living_room_sensor
           - type: horizontal-stack
@@ -20,5 +20,5 @@ views:
               - type: picture-glance
                 image: /local/Bedroom@2x.png
                 entities:
-                  - light.ge_jasco_wall_dimmer_bedroom_level
+                  - light.ge_dimmer_level_bedroom
                   - binary_sensor.bedroom_window

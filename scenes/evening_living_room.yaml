@@ -1,10 +1,10 @@
 name: Evening - Living Room
 entities:
-  light.ge_jasco_wall_dimmer_living_room_level:
+  light.ge_dimmer_level_living_room:
     state: on
     brightness: 216
     transition: 5
-  light.ge_jasco_wall_dimmer_dining_nook_level:
+  light.ge_dimmer_level_dining_nook:
     state: on
     brightness: 216
     transition: 5

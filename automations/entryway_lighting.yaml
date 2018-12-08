@@ -18,11 +18,11 @@
       data_template:
         entity_id: input_number.entryway_light_last_brightness
         value: >-
-          {{ state_attr('light.ikea_tradfri_1000lm_entryway', 'brightness')|int }}
+          {{ state_attr('light.tradfri_1000lm_entryway', 'brightness')|int }}
     # Set the light to full brightness
     - service: light.turn_on
       data:
-        entity_id: light.ikea_tradfri_1000lm_entryway
+        entity_id: light.tradfri_1000lm_entryway
         brightness: 254
     # If the automation timer was already running to turn the light back off,
     # stop it
@@ -84,7 +84,7 @@
     # Set the light to its previous brightness
     - service: light.turn_on
       data_template:
-        entity_id: light.ikea_tradfri_1000lm_entryway
+        entity_id: light.tradfri_1000lm_entryway
         brightness: >-
           {{ states('input_number.entryway_light_last_brightness')|int }}
         transition: 30
@@ -101,7 +101,7 @@
   trigger:
     # If the state of the entryway light changes
     - platform: state
-      entity_id: light.ikea_tradfri_1000lm_entryway
+      entity_id: light.tradfri_1000lm_entryway
   condition:
     # And the time is running to reset it to its previous brightness
     - condition: state

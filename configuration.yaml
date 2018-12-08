@@ -93,9 +93,9 @@ homekit:
       - binary_sensor.dome_motion_detector_living_room_sensor
       - binary_sensor.front_door
       - binary_sensor.living_room_window
-      - light.ge_jasco_wall_dimmer_bedroom_level
-      - light.ge_jasco_wall_dimmer_dining_nook_level
-      - light.ge_jasco_wall_dimmer_living_room_level
+      - light.ge_dimmer_level_bedroom
+      - light.ge_dimmer_level_dining_nook
+      - light.ge_dimmer_level_living_room
       - light.ikea_tradfri_1000lm_entryway
       - media_player.living_room
       - script.good_night
@@ -125,6 +125,7 @@ script:     !include_dir_named scripts/
 # Domains taking lists of entities
 binary_sensor:  !include_dir_list entities/binary_sensors
 device_tracker: !include_dir_list entities/device_trackers
+light:          !include_dir_list entities/lights
 media_player:   !include_dir_list entities/media_players
 scene:          !include_dir_list scenes
 sensor:         !include_dir_list entities/sensors

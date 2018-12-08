@@ -3,11 +3,11 @@ entities:
   light.ikea_tradfri_1000lm_entryway:
     state: off
     transition: 10
-  light.ge_jasco_wall_dimmer_living_room_level:
+  light.ge_dimmer_level_living_room:
     state: on
     brightness: 10
     transition: 10
-  light.ge_jasco_wall_dimmer_dining_nook_level:
+  light.ge_dimmer_level_dining_nook:
     state: on
     brightness: 10
     transition: 10

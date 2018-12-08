@@ -1,0 +1,12 @@
+# Note that there is a high chance Zigbee color temperature lights are
+# incorrectly detected, so you may need to manually edit the `zigbee.db`
+# database and assign the correct `device_type` code to each one
+# Reference: https://github.com/home-assistant/home-assistant/issues/12213#issuecomment-376254680
+platform: group
+name: All Color Temperature Lights
+entities:
+  - light.dining_nook_pendants
+  - light.sep_bedside_lamp
+  - light.sep_bedside_orb
+  - light.sep_living_room_lamp
+  - light.tradfri_980lm_bathroom

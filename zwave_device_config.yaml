@@ -1,5 +1,5 @@
 # This minimizes the weirdness from GE dimmers' super-long fade times
-'light.ge_jasco_wall_dimmer_*_level':
+'light.ge_dimmer_level_*':
   delay: 1
   ignored: false
   polling_intensity: 1
