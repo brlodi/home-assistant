@@ -69,11 +69,14 @@ updater:
 
 # Integrate Hass.io addons in sidebar
 panel_iframe:
-  pihole:
-    title: Pi-hole
-    icon: mdi:cancel
-    url: !secret url_pihole
-
+  configurator:
+    title: Configurator
+    icon: mdi:card-bulleted-settings-outline
+    url: !secret url_configurator
+  portainer:
+    title: Portainer
+    icon: mdi:docker
+    url: !secret url_portainer
 
 
 ################################################################################
