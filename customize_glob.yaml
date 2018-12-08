@@ -1,3 +1,9 @@
+# Hide inputs used for temporary state storage that shouldn't be visible to or
+# modified in the GUI
+"*variable*":
+  hidden: true
+  icon: mdi:variable
+
 # Switches should look like switches, not light bulbs.
 "light.ge_dimmer_level_*":
   icon: mdi:light-switch

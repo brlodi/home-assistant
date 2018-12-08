@@ -1,2 +1,6 @@
+name: Wake-up Sequence Duration
 min: 0
-max: 60
+max: 90
+step: 5
+initial: 30
+unit_of_measurement: minutes

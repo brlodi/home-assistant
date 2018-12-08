@@ -11,12 +11,12 @@
     # overwrite it when the door is opened again before the timer runs out)
     - condition: template
       value_template: >-
-        {{ states('input_number.entryway_light_last_brightness')|int == -1 }}
+        {{ states('input_number.variable_entryway_light_last_brightness')|int == -1 }}
   action:
     # Record the previous brightness so we can restore it later
     - service: input_number.set_value
       data_template:
-        entity_id: input_number.entryway_light_last_brightness
+        entity_id: input_number.variable_entryway_light_last_brightness
         value: >-
           {{ state_attr('light.tradfri_1000lm_entryway', 'brightness')|int }}
     # Set the light to full brightness
@@ -43,7 +43,7 @@
     # If we have stored a brightness to return to
     - condition: template
       value_template: >-
-        {{ states('input_number.entryway_light_last_brightness')|int >= 0 }}
+        {{ states('input_number.variable_entryway_light_last_brightness')|int >= 0 }}
   action:
     # Start the timer
     - service: timer.start
@@ -79,19 +79,19 @@
     # light as is
     - condition: template
       value_template: >-
-        {{ states('input_number.entryway_light_last_brightness')|int != -1 }}
+        {{ states('input_number.variable_entryway_light_last_brightness')|int != -1 }}
   action:
     # Set the light to its previous brightness
     - service: light.turn_on
       data_template:
         entity_id: light.tradfri_1000lm_entryway
         brightness: >-
-          {{ states('input_number.entryway_light_last_brightness')|int }}
+          {{ states('input_number.variable_entryway_light_last_brightness')|int }}
         transition: 30
     # Reset the previous brightness variable
     - service: input_number.set_value
       data:
-        entity_id: input_number.entryway_light_last_brightness
+        entity_id: input_number.variable_entryway_light_last_brightness
         value: -1
 
 # If the light is manually adjusted while the timer is running, cancel the
@@ -115,5 +115,5 @@
     # And reset the storage variable
     - service: input_number.set_value
       data:
-        entity_id: input_number.entryway_light_last_brightness
+        entity_id: input_number.variable_entryway_light_last_brightness
         value: -1

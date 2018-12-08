@@ -1,0 +1,36 @@
+- alias: Panic Mode Switch Trigger
+  trigger:
+    - platform: event
+      event_type: zwave.node_event
+      event_data:
+        entity_id: zwave.ge_dimmer_bedroom
+        basic_level: 255
+    - platform: event
+      event_type: zwave.node_event
+      event_data:
+        entity_id: zwave.ge_dimmer_dining_nook
+        basic_level: 255
+    - platform: event
+      event_type: zwave.node_event
+      event_data:
+        entity_id: zwave.ge_dimmer_living_room
+        basic_level: 255
+  action:
+    - service: input_boolean.toggle
+      data:
+        entity_id: input_boolean.panic_mode
+
+- alias: Panic Mode Lighting
+  trigger:
+    - platform: time
+      seconds: '/5'
+  condition:
+    condition: state
+    entity_id: input_boolean.panic_mode
+    state: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.all_lights
+        brightness: 255
+        kelvin: 4000
