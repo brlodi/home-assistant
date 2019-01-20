@@ -4,7 +4,7 @@ entities:
     state: on
     brightness_pct: 10
     transition: 1
-  light.ikea_tradfri_1000lm_entryway:
+  light.tradfri_1000lm_entryway:
     state: off
     transition: 5
   light.ge_dimmer_level_living_room:
