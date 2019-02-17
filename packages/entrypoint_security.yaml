@@ -1,0 +1,40 @@
+binary_sensor entrypoint_security:
+  platform: template
+  sensors:
+    front_door_access_control:
+      friendly_name: Front Door
+      device_class: door
+      value_template: >-
+        {{ not is_state('sensor.monoprice_door_window_sensor_front_door_access_control', '23') }}
+    living_room_window_access_control:
+      friendly_name: Living Room Window
+      device_class: window
+      value_template: >-
+        {{ not is_state('sensor.monoprice_door_window_sensor_living_room_window_access_control', '23') }}
+    bedroom_window_access_control:
+      friendly_name: Bedroom Window
+      device_class: window
+      value_template: >-
+        {{ not is_state('sensor.monoprice_door_window_sensor_bedroom_window_access_control', '23') }}
+    front_door_tamper:
+      friendly_name: Front Door Sensor Tamper
+      device_class: safety
+      value_template: >-
+        {{ states('sensor.monoprice_door_window_sensor_front_door_burglar')|int > 0 }}
+    living_room_window_tamper:
+      friendly_name: Living Room Window Sensor Tamper
+      device_class: safety
+      value_template: >-
+        {{ states('sensor.monoprice_door_window_sensor_living_room_window_burglar')|int > 0 }}
+    bedroom_window_tamper:
+      friendly_name: Bedroom Window Sensor Tamper
+      device_class: safety
+      value_template: >-
+        {{ states('sensor.monoprice_door_window_sensor_bedroom_window_burglar')|int > 0 }}
+
+homeassistant:
+  customize_glob:
+    'sensor.monoprice_door_window_sensor_*_access_control':
+      homebridge_hidden: true
+    'sensor.monoprice_door_window_sensor_*_burglar':
+      homebridge_hidden: true

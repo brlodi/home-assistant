@@ -1,0 +1,5 @@
+sun:
+weather local_weather:
+  platform: darksky
+  api_key: !secret api_darksky_key
+  name: !secret home_friendly_placename

@@ -1,24 +1,42 @@
 title: Home
 views:
-  - title: Overview
-    panel: true
+  - !include lovelace/view-overview.yaml
+  - !include lovelace/view-living-room-media.yaml
+  - !include lovelace/view-lights.yaml
+  - title: Control Panel
+    path: cp
+    icon: mdi:monitor-dashboard
     cards:
-      - type: vertical-stack
-        cards:
-          - type: picture-glance
-            image: /local/Living Room@2x.png
-            entities:
-              - media_player.living_room
-              - light.ge_dimmer_level_living_room
-              - light.ge_dimmer_level_dining_nook
-              - binary_sensor.living_room_window
-              - binary_sensor.dome_motion_detector_living_room_sensor
-          - type: horizontal-stack
-            cards:
-              - type: weather-forecast
-                entity: weather.dark_sky
-              - type: picture-glance
-                image: /local/Bedroom@2x.png
-                entities:
-                  - light.ge_dimmer_level_bedroom
-                  - binary_sensor.bedroom_window
+      - type: custom:tracker-card
+        title: Updates
+        trackers:
+          - sensor.custom_card_tracker
+          - sensor.custom_component_tracker
+
+resources:
+  - url: /local/auto-entities.js?v=c098c9
+    type: js
+  - url: /local/button-card.js?v=0.0.5
+    type: module
+  - url: /local/card-modder.js?v=70344a
+    type: js
+  - url: /local/card-tools.js?v=297fcc
+    type: js
+  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.2.9
+    type: js
+  - url: /local/fold-entity-row.js?v=6d11d3
+    type: js
+  - url: /local/mini-media-player-bundle.js?v=0.9.8
+    type: module
+  - url: /local/slider-entity-row.js?v=ba8f50
+    type: js
+  - url: /local/text-element.js?v=0.0.2
+    type: js
+  - url: /local/tracker-card.js?v=0.1.5
+    type: js
+  - url: /local/useful-markdown-card.js?v=dfc268
+    type: js
+  - url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
+    type: js
+  - url: https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/swipe-card/swipe-card.min.js
+    type: module

@@ -1,0 +1,60 @@
+title: Overview
+path: overview
+icon: mdi:home
+cards:
+  - type: custom:compact-custom-header
+    header: true
+  - type: entity-filter
+    entities:
+      - binary_sensor.front_door_access_control
+      - binary_sensor.living_room_window_access_control
+      - binary_sensor.bedroom_window_access_control
+    state_filter:
+      - 'on'
+    show_empty: false
+  - type: horizontal-stack
+    cards:
+      - type: entity-button
+        entity: scene.living_room_bright
+        name: LR Bright
+        icon: mdi:brightness-7
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.living_room_bright
+      - type: entity-button
+        entity: scene.living_room_cozy
+        name: LR Cozy
+        icon: mdi:brightness-4
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.living_room_cozy
+      - type: entity-button
+        entity: scene.bedtime
+        icon: mdi:hotel
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.bedtime
+      - type: entity-button
+        entity: scene.sleep
+        icon: mdi:sleep
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.sleep
+  - type: custom:mini-media-player
+    entity: media_player.living_room_media_center
+    name: Living Room
+    icon: mdi:television
+    show_source: full
+    artwork: none
+    hide_media_info: true
+    volume_stateless: true
+    idle_view: true
+  - !include card-light-dashboard.yaml

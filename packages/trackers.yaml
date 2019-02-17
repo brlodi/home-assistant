@@ -1,0 +1,60 @@
+# device_tracker quantum_gateway:
+#   platform: quantum_gateway
+#   host: 10.0.0.1
+#   password: !secret fios_router_password
+
+device_tracker bt:
+  platform: bluetooth_tracker
+  track_new_devices: true
+  scan_interval: 15
+# device_tracker btle:
+#   platform: bluetooth_le_tracker
+#   track_new_devices: true
+
+device_tracker pinger:
+  platform: ping
+  scan_interval: 30
+  count: 3
+  consider_home: 61
+  hosts:
+    meriadoc_ping: 10.0.0.100
+    Aragorn:  10.0.0.81
+    Wheatley: 10.0.0.40
+
+device_tracker car:
+  platform: automatic
+  client_id: !secret api_automatic_id
+  secret: !secret api_automatic_secret
+
+binary_sensor presence_ben:
+  platform: bayesian
+  name: Ben
+  prior: 0.5
+  probability_threshold: 0.9
+  device_class: presence
+  observations:
+    - entity_id: device_tracker.meriadoc
+      prob_given_true: 0.9
+      prob_given_false: 0.15
+      platform: state
+      to_state: home
+    - entity_id: device_tracker.meriadoc_ping
+      prob_given_true: 1.0
+      prob_given_false: 0.5
+      platform: state
+      to_state: home
+    - entity_id: device_tracker.lexus_rx300
+      prob_given_true: 0.55
+      prob_given_false: 0.3
+      platform: state
+      to_state: home
+    - entity_id: device_tracker.aragorn
+      prob_given_true: 0.89
+      prob_given_false: 0.5
+      platform: state
+      to_state: home
+    - entity_id: device_tracker.wheatley
+      prob_given_true: 0.8
+      prob_given_false: 0.5
+      platform: state
+      to_state: home

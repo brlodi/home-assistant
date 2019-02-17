@@ -1,0 +1,7 @@
+title: Living Room Media
+icon: mdi:remote
+cards:
+  - type: custom:compact-custom-header
+    header: true
+  - !include card-roku-remote-living-room.yaml
+  - !include card-roku-sources-living-room.yaml

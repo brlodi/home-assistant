@@ -1,5 +1,0 @@
-platform: group
-name: Bedroom Lamps
-entities:
-  - light.sep_bedside_orb
-  - light.sep_bedside_lamp

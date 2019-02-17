@@ -1,0 +1,8 @@
+light group_living_room_lights:
+  platform: group
+  name: (Group) Living Room Lights
+  entities:
+    - light.living_room_dimmer
+    - light.dining_nook_dimmer
+    - light.living_room_ceiling_light
+    - light.living_room_lamp_2

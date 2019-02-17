@@ -1,8 +1,0 @@
-platform: flux
-name: Flux
-lights:
-  - light.all_color_temperature_lights
-stop_time: '23:00'
-start_colortemp: 5200
-disable_brightness_adjust: True
-mode: mired

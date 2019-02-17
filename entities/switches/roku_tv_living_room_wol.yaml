@@ -1,5 +1,0 @@
-# Send a Wake-on-Lan magic packet to the TV, which turns it on if it has
-# entered deep sleep (if not in deep sleep the TV ignores the packet)
-platform: wake_on_lan
-name: Roku TV Living Room WOL
-mac_address: "5c-ad-76-a4-7e-a4"

@@ -1,6 +1,16 @@
 # This minimizes the weirdness from GE dimmers' super-long fade times
-'light.ge_dimmer_level_*':
-  delay: 1
+'light.*_dimmer':
+  delay: 2
   ignored: false
   polling_intensity: 1
   refresh_value: true
+
+# Ignore extraneous entities from door/window sensors
+'sensor.monoprice_door_window_sensor_*_alarm_level':
+  ignored: true
+'sensor.monoprice_door_window_sensor_*_alarm_type':
+  ignored: true
+'sensor.monoprice_door_window_sensor_*_sourcenodeid':
+  ignored: true
+'binary_sensor.monoprice_door_window_sensor_*_sensor':
+  ignored: true

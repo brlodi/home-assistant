@@ -1,4 +1,4 @@
 ---
-# prep_homekit:
-#   module: prep_homekit
-#   class: PrepareHomeKit
+presence:
+  module: presence_lighting
+  class: PresenceActions

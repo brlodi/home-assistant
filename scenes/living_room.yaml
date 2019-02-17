@@ -1,0 +1,52 @@
+- name: Living Room – Bright
+  entities:
+    light.living_room_ceiling_light: on
+    light.living_room_dimmer:
+      state: on
+      brightness_pct: 100
+    light.dining_nook_dimmer:
+      state: on
+      brightness_pct: 100
+
+- name: Living Room – Cozy
+  entities:
+    light.living_room_ceiling_light: on
+    light.living_room_dimmer:
+      state: on
+      brightness_pct: 70
+    light.dining_nook_dimmer:
+      state: on
+      brightness_pct: 70   
+
+- name: Theatre Mode (Night)
+  entities:
+    media_player.living_room_media_center: on
+    light.entryway:
+      state: off
+      transition: 5
+    light.living_room_ceiling_light: off
+    light.living_room_dimmer:
+      state: on
+      transition: 5
+      brightness_pct: 15
+    light.dining_nook_dimmer:
+      state: on
+      transition: 5
+      brightness_pct: 15
+    light.living_room_lamp_2:
+      state: off
+      transition: 5
+
+- name: Theatre Mode (Day)
+  entities:
+    media_player.living_room_media_center: on
+    light.entryway:
+      state: off
+      transition: 5
+    light.living_room_ceiling_light: off
+    light.living_room_dimmer:
+      state: off
+      transition: 5
+    light.dining_nook_dimmer:
+      state: off
+      transition: 5

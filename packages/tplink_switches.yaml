@@ -1,0 +1,22 @@
+switch:
+  - platform: tplink
+    name: TP-LINK HS110 - Bedroom Fan
+    host: 10.0.0.140
+  - platform: tplink
+    name: TP-LINK HS110 - Refrigerator
+    host: 10.0.0.141
+  - platform: tplink
+    name: TP-LINK HS110 - Living Room Ceiling Light
+    host: 10.0.0.142
+
+light:
+  - platform: switch
+    name: Living Room Ceiling Light
+    entity_id: switch.tp_link_hs110_living_room_ceiling_light
+
+recorder:
+  include:
+    entities:
+      - switch.tp_link_hs110_living_room_ceiling_light
+      - switch.tp_link_hs110_bedroom_fan
+      - switch.tp_link_hs110_refrigerator

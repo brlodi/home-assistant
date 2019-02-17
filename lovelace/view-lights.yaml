@@ -1,0 +1,30 @@
+title: Lighting
+path: lighting
+icon: mdi:lightbulb
+cards:
+  - type: custom:compact-custom-header
+    header: true
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Lights
+    filter:
+      include:
+        - domain: 'light'
+      exclude:
+        - entity_id: '*group*'
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Light Groups
+    filter:
+      include:
+        - domain: 'light'
+          entity_id: '*group*'
+  - type: custom:auto-entities
+    card:
+      type: entities
+      title: Circadian Lighting
+    filter:
+      include:
+        - entity_id: '*circadian*'

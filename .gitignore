@@ -11,6 +11,8 @@ options.xml
 *.log
 *Log.txt
 __pycache__/
+tts/
+deps/
 
 # Databases
 *.db

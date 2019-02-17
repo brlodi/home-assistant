@@ -1,0 +1,108 @@
+# This mostly serves to unify the state across both the Roku and the Xbox, and
+# to allow control of the Roku TV functions that are not currently supported by
+# HA's Roku component
+media_player living_room_media_center:
+  platform: universal
+  name: Living Room Media Center
+  children:
+    - media_player.living_room_roku_tv
+  state_template: >-
+    {% if is_state('sensor.living_room_roku_tv', 'on') %}
+      {% if is_state_attr('media_player.living_room_roku_tv', 'source', 'Xbox One') %}
+        {{ states('sensor.xbox_live') }}
+      {% elif state_attr('media_player.living_room_roku_tv', 'source')|lower in ['home', 'davinci channel'] %}
+        idle
+      {% else %}
+        {{ states('media_player.living_room_roku_tv') }}
+      {% endif %}
+    {% else %}
+      off
+    {% endif %}
+  attributes:
+    source: media_player.living_room_roku_tv|source
+    source_list: media_player.living_room_roku_tv|source_list
+  commands:
+    turn_on:
+      service: rest_command.roku_keypress
+      data:
+        host: 10.0.0.20
+        key: PowerOn
+    turn_off:
+      service: rest_command.roku_keypress
+      data:
+        host: 10.0.0.20
+        key: PowerOff
+    volume_up:
+      service: rest_command.roku_keypress
+      data:
+        host: 10.0.0.20
+        key: VolumeUp
+    volume_down:
+      service: rest_command.roku_keypress
+      data:
+        host: 10.0.0.20
+        key: VolumeDown
+    volume_mute:
+      service: rest_command.roku_keypress
+      data:
+        host: 10.0.0.20
+        key: VolumeMute
+    select_source:
+      service: media_player.select_source
+      data_template:
+        entity_id: media_player.living_room_roku_tv
+        source: '{{ source }}'
+
+media_player living_room_roku_tv:
+  platform: roku
+  host: 10.0.0.20 # Now has to be hard-coded due to Roku "security" change
+
+# Extract the power status from the TV's local API (it's XML)
+sensor living_room_roku_tv:
+  platform: rest
+  name: Living Room Roku TV
+  resource: http://10.0.0.20:8060/query/device-info
+  scan_interval: 10
+  value_template: >-
+    {% if value and '<power-mode>PowerOn</power-mode>' in value %}
+      on
+    {% elif value and '<power-mode>Headless</power-mode>' in value %}
+      standby
+    {% else %}
+      off
+    {% endif %}
+
+# Get the Xbox status via a third-party Xbox API
+sensor xbox_live:
+  platform: rest
+  name: Xbox Live
+  resource: https://xbl.io/api/v2/player/summary
+  headers:
+    X-Authorization: !secret api_openxbl_key
+    Accept: application/json
+  value_template: >-
+    {% set user = value_json.people[0] %}
+    {% if user.presenceState.casefold() == 'Online'.casefold() %}
+      {% if user.presenceText.casefold() == 'Home'.casefold() %}
+        Xbox Dashboard
+      {% else %}
+        {{ user.presenceText }}
+      {% endif %}
+    {% else %}
+      {{ user.presenceState }}
+    {% endif %}
+
+# The Roku TV accepts remote keypresses via local API
+rest_command:
+  roku_keypress:
+    url: 'http://{{ host }}:8060/keypress/{{ key }}'
+    method: POST
+
+homeassistant:
+  customize:
+    media_player.living_room_roku_tv:
+      homebridge_hidden: true
+    sensor.living_room_roku_tv:
+      homebridge_hidden: true
+    sensor.xbox_live:
+      homebridge_hidden: true
