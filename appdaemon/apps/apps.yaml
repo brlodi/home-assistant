@@ -6,3 +6,8 @@ ben_adv_presence:
   trackers:
     - group.meriadoc
 
+presence_based_lighting:
+  module: presence_based_lighting
+  class: PresenceBasedLighting
+  presence_indicators:
+    - sensor.ben_presence
