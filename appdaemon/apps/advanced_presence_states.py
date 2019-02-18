@@ -9,7 +9,8 @@ class AdvancedPresence(hass.Hass):
 
     DUR_TRANSITIONAL = 5 * 60  # 5 minutes
     DUR_EXTENDED = 24 * 60 * 60 # 24 hours
-    
+
+
     def initialize(self):
         self.output_entity = self.args['output_id']
         self.watched_trackers = self.args['trackers']
@@ -35,9 +36,9 @@ class AdvancedPresence(hass.Hass):
             self.listen_state(self.mark_just_departed, entity=tracker, old='home', new='not_home')
             
     
-    
     def update_output_state(self, new_state):
         self.set_state(self.output_entity, state=new_state)
+
 
     def mark_just_arrived(self, entity, attribute, old, new, kwargs):
         # If the output was just 'Just Departed' we assume the departure was a false location and
@@ -48,14 +49,18 @@ class AdvancedPresence(hass.Hass):
         else:
             self.update_output_state(new_state=self.STATE_ARRIVED)
 
+
     def mark_home(self, entity, attribute, old, new, kwargs):
         self.update_output_state(new_state=self.STATE_HOME)
+
 
     def mark_just_departed(self, entity, attribute, old, new, kwargs):
         self.update_output_state(new_state=self.STATE_DEPARTED)
 
+
     def mark_away(self, entity, attribute, old, new, kwargs):
         self.update_output_state(new_state=self.STATE_AWAY)
+
 
     def mark_extended_away(self, entity, attribute, old, new, kwargs):
         self.update_output_state(new_state=self.STATE_EXT_AWAY)
