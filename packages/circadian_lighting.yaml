@@ -48,4 +48,5 @@ switch:
 homeassistant:
   customize:
     sensor.circadian_values:
+      hidden: true
       homebridge_hidden: true

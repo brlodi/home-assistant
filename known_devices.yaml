@@ -1,39 +1,52 @@
+aragorn_bt:
+  hide_if_away: false
+  icon: mdi:laptop-mac
+  mac: BT_F4:0F:24:33:7F:62
+  name: Aragorn
+  picture:
+  track: true
+aragorn_ping:
+  hide_if_away: false
+  icon: mdi:laptop-mac
+  mac:
+  name: Aragorn
+  picture:
+  track: true
+
 lexus_rx300:
   hide_if_away: false
   icon: mdi:car
   mac: C_2D1FB863D134ADF6
   name: Lexus RX300
-  picture:
+  picture: /local/images/rx-300-white.jpg
   track: true
 
-meriadoc:
+meriadoc_ios:
   hide_if_away: false
   icon: mdi:cellphone-iphone
   mac:
-  name: Meriadoc (iOS)
+  name: Meriadoc
   picture:
   track: true
-
 meriadoc_ping:
   hide_if_away: false
   icon: mdi:cellphone-iphone
   mac:
-  name: Meriadoc (Ping)
+  name: Meriadoc
+  picture:
+  track: true
+meriadoc_bt:
+  hide_if_away: false
+  icon: mdi:cellphone-iphone
+  mac: BT_00:61:71:C5:6E:99
+  name: Meriadoc
   picture:
   track: true
 
-wheatley:
+wheatley_ping:
   hide_if_away: false
   icon: mdi:desktop-tower-monitor
   mac:
   name: Wheatley
-  picture:
-  track: true
-
-aragorn:
-  hide_if_away: false
-  icon: mdi:laptop-mac
-  mac:
-  name: Aragorn
   picture:
   track: true

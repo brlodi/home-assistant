@@ -1,4 +1,8 @@
 ---
-presence:
-  module: presence_lighting
-  class: PresenceActions
+ben_adv_presence:
+  module: advanced_presence_states
+  class: AdvancedPresence
+  output_id: sensor.ben_presence
+  trackers:
+    - group.meriadoc
+
