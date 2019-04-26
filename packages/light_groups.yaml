@@ -1,3 +1,11 @@
+# Turn switches that control light fixtures into HA lights, so they can be
+# included in light groups
+light:
+  - platform: switch
+    name: Living Room Ceiling Light
+    entity_id: switch.living_room_ceiling_light
+
+
 light group_living_room_lights:
   platform: group
   name: (Group) Living Room Lights

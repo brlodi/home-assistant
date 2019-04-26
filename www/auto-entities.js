@@ -1,25 +1,31 @@
 customElements.whenDefined('card-tools').then(() => {
-class AutoEntities extends cardTools.litElement() {
+class AutoEntities extends cardTools.LitElement {
 
   setConfig(config) {
     if(!config || !config.card)
       throw new Error("Invalid configuration");
 
     this._config = config;
+    this.data = {};
 
     this.entities = this.get_entities() || [];
-    this.card = cardTools.createCard({entities: this.entities, ...config.card});
+    this.card = cardTools.createCard(Object.assign({entities: this.entities}, config.card));
   }
+
 
   match(pattern, str){
     if (typeof(str) === "string" && typeof(pattern) === "string") {
       if((pattern.startsWith('/') && pattern.endsWith('/')) || pattern.indexOf('*') !== -1) {
-        if(pattern[0] !== '/')
-          pattern = `/${pattern.replace(/\*/g, '.*')}/`;
+        if(pattern[0] !== '/') {
+          pattern = pattern.replace(/\./g, '\.');
+          pattern = pattern.replace(/\*/g, '.*');
+          pattern = `/^${pattern}$/`;
+        }
         var regex = new RegExp(pattern.substr(1).slice(0,-1));
         return regex.test(str);
       }
-    } else if(typeof(pattern) === "string") {
+    }
+    if(typeof(pattern) === "string") {
       if(pattern.indexOf(":") !== -1 && typeof(str) === "object") {
         while(pattern.indexOf(":") !== -1)
         {
@@ -27,12 +33,12 @@ class AutoEntities extends cardTools.litElement() {
           pattern = pattern.substr(pattern.indexOf(":")+1, pattern.length);
         }
       }
-      if(pattern.startsWith("<=")) return str <= parseFloat(pattern.substr(2));
-      if(pattern.startsWith(">=")) return str >= parseFloat(pattern.substr(2));
-      if(pattern.startsWith("<")) return str < parseFloat(pattern.substr(1));
-      if(pattern.startsWith(">")) return str > parseFloat(pattern.substr(1));
-      if(pattern.startsWith("!")) return str != parseFloat(pattern.substr(1));
-      if(pattern.startsWith("=")) return str == parseFloat(pattern.substr(1));
+      if(pattern.startsWith("<=")) return parseFloat(str) <= parseFloat(pattern.substr(2));
+      if(pattern.startsWith(">=")) return parseFloat(str) >= parseFloat(pattern.substr(2));
+      if(pattern.startsWith("<")) return parseFloat(str) < parseFloat(pattern.substr(1));
+      if(pattern.startsWith(">")) return parseFloat(str) > parseFloat(pattern.substr(1));
+      if(pattern.startsWith("!")) return parseFloat(str) != parseFloat(pattern.substr(1));
+      if(pattern.startsWith("=")) return parseFloat(str) == parseFloat(pattern.substr(1));
     }
     return str === pattern;
   }
@@ -71,6 +77,26 @@ class AutoEntities extends cardTools.litElement() {
             )
               unmatched = true;
             break;
+          case "area":
+            let found = false;
+            this.data.areas.forEach((a) => {
+              if(found) return;
+              if(this.match(value, a.name)) {
+                this.data.devices.forEach((d) => {
+                  if(found) return;
+                  if(d.area_id && d.area_id === a.area_id) {
+                    this.data.entities.forEach((en) => {
+                      if(found) return;
+                      if(en.device_id === d.id && en.entity_id === e.entity_id) {
+                        found = true;
+                      }
+                    });
+                  }
+                });
+              }
+            });
+            if(!found) unmatched = true;
+            break;
           case "group":
             if(!value.startsWith("group.")
               || !hass.states[value]
@@ -89,6 +115,8 @@ class AutoEntities extends cardTools.litElement() {
                 unmatched = true;
             });
             break;
+          default:
+            unmatched = true;
         }
       });
       if(!unmatched) retval.push(count);
@@ -106,10 +134,17 @@ class AutoEntities extends cardTools.litElement() {
 
       if(this._config.filter.include){
         this._config.filter.include.forEach((f) => {
-          const add = this.match_filter(this._hass, Object.keys(this._hass.states), f)
+          const add = this.match_filter(this._hass, Object.keys(this._hass.states), f);
+          let toAdd = [];
           add.forEach((i) => {
-            entities.push({entity: Object.keys(this._hass.states)[i], ...f.options});
+            toAdd.push(Object.assign({entity: Object.keys(this._hass.states)[i]}, f.options));
           });
+          toAdd.sort((a,b) => {
+            if (a.entity < b.entity) return -1;
+            if (a.entity > b.entity) return 1;
+            return 0;
+          });
+          toAdd.forEach((i) => entities.push(i));
         });
       }
 
@@ -126,24 +161,55 @@ class AutoEntities extends cardTools.litElement() {
     return entities;
   }
 
+  createRenderRoot() {
+    return this;
+  }
   render() {
     if(this.entities.length === 0 && this._config.show_empty === false)
-      return cardTools.litHtml()``;
-    return cardTools.litHtml()`
-      ${this.card}
+      return cardTools.LitHtml``;
+    return cardTools.LitHtml`
+      <div id="root">${this.card}</div>
     `;
+  }
+
+  async get_data(hass) {
+    try {
+    this.data.areas = await hass.callWS({type: "config/area_registry/list"});
+    this.data.devices = await hass.callWS({type: "config/device_registry/list"});
+    this.data.entities = await hass.callWS({type: "config/entity_registry/list"});
+    } catch (err) {
+    }
+  }
+
+  _compare_arrays(a,b) {
+    if(a === b) return true;
+    if(a == null || b == null) return false;
+    if(a.length != b.length) return false;
+    for(var i = 0; i < a.length; i++) {
+      if(a[i] !== b[i]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   set hass(hass) {
     this._hass = hass;
-    const oldlen = this.entities.length;
-    this.entities = this.get_entities() || [];
-    if(this.card)
-    {
-      this.card.hass = this._hass;
-      this.card.setConfig({entities: this.entities, ...this._config.card});
-    }
-    if(this.entities.length != oldlen) this.requestUpdate();
+    this.get_data(hass).then(() => {
+      if(this.card)
+      {
+        this.card.hass = this._hass;
+      }
+
+      const oldEntities = this.entities.map((e) => e.entity);
+      this.entities = this.get_entities() || [];
+      const newEntities = this.entities.map((e) => e.entity);
+
+      if(!this._compare_arrays(oldEntities, newEntities)) {
+        this.card.setConfig(Object.assign({entities: this.entities}, this._config.card));
+        this.requestUpdate();
+      }
+    });
   }
 
 }

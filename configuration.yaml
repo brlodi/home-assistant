@@ -34,6 +34,7 @@ recorder:
       - binary_sensor
       - device_tracker
       - group
+      - switch
 history:
 logbook:
 map:

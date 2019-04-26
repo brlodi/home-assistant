@@ -14,29 +14,29 @@ views:
           - sensor.custom_component_tracker
 
 resources:
-  - url: /local/auto-entities.js?v=c098c9
+  - url: /customcards/auto-entities.js
     type: js
-  - url: /local/button-card.js?v=0.0.5
+  - url: /customcards/button-card.js
     type: module
-  - url: /local/card-modder.js?v=70344a
+  - url: /customcards/card-modder.js
     type: js
-  - url: /local/card-tools.js?v=297fcc
+  - url: /customcards/card-tools.js
     type: js
-  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v=0.2.9
-    type: js
-  - url: /local/fold-entity-row.js?v=6d11d3
-    type: js
-  - url: /local/mini-media-player-bundle.js?v=0.9.8
+  - url: /customcards/custom-lovelace/compact-custom-header/compact-custom-header.js
     type: module
-  - url: /local/slider-entity-row.js?v=ba8f50
+  - url: /customcards/fold-entity-row.js
     type: js
-  - url: /local/text-element.js?v=0.0.2
-    type: js
-  - url: /local/tracker-card.js?v=0.1.5
-    type: js
-  - url: /local/useful-markdown-card.js?v=dfc268
-    type: js
-  - url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
-    type: js
-  - url: https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/swipe-card/swipe-card.min.js
+  - url: /customcards/mini-media-player-bundle.js
     type: module
+  - url: /customcards/slider-entity-row.js
+    type: js
+  - url: /customcards/time-input-row.js
+    type: js
+  - url: /customcards/text-element.js
+    type: js
+  - url: /customcards/tracker-card.js
+    type: js
+  - url: /customcards/useful-markdown-card.js
+    type: js
+  - url: /customcards/custom-lovelace/monster-card/monster-card.js
+    type: js
