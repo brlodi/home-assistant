@@ -98,6 +98,9 @@ rest_command:
     url: 'http://{{ host }}:8060/keypress/{{ key }}'
     method: POST
 
+shell_command:
+  living_room_xbox_power_on: python3 /config/python_scripts/xbox_power_control.py -a 10.0.0.41 -i FD00A8F4C4E19DE8
+
 homeassistant:
   customize:
     media_player.living_room_roku_tv:
