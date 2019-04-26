@@ -3,15 +3,7 @@ views:
   - !include lovelace/view-overview.yaml
   - !include lovelace/view-living-room-media.yaml
   - !include lovelace/view-lights.yaml
-  - title: Control Panel
-    path: cp
-    icon: mdi:monitor-dashboard
-    cards:
-      - type: custom:tracker-card
-        title: Updates
-        trackers:
-          - sensor.custom_card_tracker
-          - sensor.custom_component_tracker
+  - !include lovelace/view-control-panel.yaml
 
 resources:
   - url: /customcards/auto-entities.js

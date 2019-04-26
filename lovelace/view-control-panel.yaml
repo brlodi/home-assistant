@@ -1,0 +1,42 @@
+title: Control Panel
+path: cp
+icon: mdi:monitor-dashboard
+cards:
+  - type: conditional
+    conditions:
+      - entity: updater.updater
+        state_not: 'None'
+    card:
+      type: entities
+      entities:
+        - updater.updater
+  - type: entities
+    title: System Management
+    show_header_toggle: false
+    entities:
+      - type: call-service
+        icon: mdi:code-tags-check
+        name: Check Configuration
+        action_name: Check
+        service: homeassistant.check_config
+      - type: divider
+      - type: call-service
+        icon: mdi:restart
+        name: Lovelace
+        action_name: Refresh
+        service: frontend.reload_themes
+      - type: call-service
+        icon: mdi:restart
+        name: Home Assistant
+        action_name: Restart
+        service: homeassistant.restart
+      - type: call-service
+        icon: mdi:restart
+        name: Host System
+        action_name: Reboot
+        service: hassio.host_reboot
+  - type: custom:tracker-card
+    title: Custom Element Updates
+    trackers:
+      - sensor.custom_card_tracker
+      - sensor.custom_component_tracker
