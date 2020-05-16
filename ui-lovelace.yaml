@@ -1,24 +1,34 @@
 title: Home
 views:
-  - title: Overview
-    panel: true
-    cards:
-      - type: vertical-stack
-        cards:
-          - type: picture-glance
-            image: /local/Living Room@2x.png
-            entities:
-              - media_player.living_room
-              - light.ge_dimmer_level_living_room
-              - light.ge_dimmer_level_dining_nook
-              - binary_sensor.living_room_window
-              - binary_sensor.dome_motion_detector_living_room_sensor
-          - type: horizontal-stack
-            cards:
-              - type: weather-forecast
-                entity: weather.dark_sky
-              - type: picture-glance
-                image: /local/Bedroom@2x.png
-                entities:
-                  - light.ge_dimmer_level_bedroom
-                  - binary_sensor.bedroom_window
+  - !include lovelace/view-overview.yaml
+  - !include lovelace/view-living-room-media.yaml
+  - !include lovelace/view-lights.yaml
+  - !include lovelace/view-control-panel.yaml
+
+resources:
+  - url: /customcards/auto-entities.js
+    type: js
+  - url: /customcards/button-card.js
+    type: module
+  - url: /customcards/card-modder.js
+    type: js
+  - url: /customcards/card-tools.js
+    type: js
+  - url: /customcards/custom-lovelace/compact-custom-header/compact-custom-header.js
+    type: module
+  - url: /customcards/fold-entity-row.js
+    type: js
+  - url: /customcards/mini-media-player-bundle.js
+    type: module
+  - url: /customcards/slider-entity-row.js
+    type: js
+  - url: /customcards/time-input-row.js
+    type: js
+  - url: /customcards/text-element.js
+    type: js
+  - url: /customcards/tracker-card.js
+    type: js
+  - url: /customcards/useful-markdown-card.js
+    type: js
+  - url: /customcards/custom-lovelace/monster-card/monster-card.js
+    type: js

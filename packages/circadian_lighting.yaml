@@ -1,0 +1,52 @@
+# Utilizing the Circadian Lighting custom component by claytonjn
+# https://community.home-assistant.io/t/circadian-lighting-custom-component
+
+circadian_lighting:
+  sunrise_offset: '1:00'
+  sunset_offset: '-1:30'
+  interval: 300
+  transition: 30
+
+switch:
+  - platform: circadian_lighting
+    name: Dimmers
+    lights_brightness:
+      - light.bedroom_dimmer
+      - light.dining_nook_dinner
+      - light.living_room_dimmer
+  - platform: circadian_lighting
+    name: Bedroom Fixtures
+    disable_brightness_adjust: true
+    lights_ct:
+      - light.bedroom_lamp_1
+      - light.bedroom_lamp_2
+    disable_entity: light.bedroom_dimmer
+    disable_state: 'off'
+  - platform: circadian_lighting
+    name: Living Room Fixtures
+    disable_brightness_adjust: true
+    lights_ct:
+      - light.living_room_lamp_1
+    disable_entity: light.living_room_dimmer
+    disable_state: 'off'
+  - platform: circadian_lighting
+    name: Dining Nook Fixtures
+    disable_brightness_adjust: true
+    lights_ct:
+      - light.dining_nook_chandelier_a
+      - light.dining_nook_chandelier_b
+      - light.dining_nook_chandelier_c
+    disable_entity: light.dining_nook_dimmer
+    disable_state: 'off'
+  - platform: circadian_lighting
+    name: Task Light Fixtures
+    disable_brightness_adjust: true
+    lights_ct:
+      - light.bathroom_pendant
+      - light.living_room_lamp_2
+
+homeassistant:
+  customize:
+    sensor.circadian_values:
+      hidden: true
+      homebridge_hidden: true

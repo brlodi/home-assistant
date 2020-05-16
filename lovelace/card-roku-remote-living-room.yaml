@@ -1,0 +1,262 @@
+type: custom:card-modder
+style:
+  padding: 0 10%
+card:
+  type: picture-elements
+  image: /local/images/roku-remote.svg
+  elements:
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - back
+      style:
+        top: 9.5%
+        left: 32%
+        width: 31.5%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - home
+      style:
+        top: 9.5%
+        left: 68%
+        width: 31.5%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - select
+      style:
+        top: 37.9%
+        left: 50%
+        width: 20%
+        height: 13.33%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - up
+      style:
+        top: 25.25%
+        left: 50%
+        width: 21.427%
+        height: 11.97%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - left
+      style:
+        top: 37.9%
+        left: 31%
+        width: 18%
+        height: 14.25%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - right
+      style:
+        top: 37.9%
+        left: 69%
+        width: 18%
+        height: 14.25%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - down
+      style:
+        top: 50.5%
+        left: 50%
+        width: 21.427%
+        height: 11.97%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - replay
+      style:
+        top: 66.33%
+        left: 32%
+        width: 31.5%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - info
+      style:
+        top: 66.33%
+        left: 68%
+        width: 31.5%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - reverse
+      style:
+        top: 78.5%
+        left: 26.5%
+        width: 20.75%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - play
+      style:
+        top: 78.5%
+        left: 50%
+        width: 20.75%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - forward
+      style:
+        top: 78.5%
+        left: 73.5%
+        width: 20.75%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - volume_mute
+      style:
+        top: 90.75%
+        left: 26.5%
+        width: 20.75%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - volume_down
+      style:
+        top: 90.75%
+        left: 50%
+        width: 20.75%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent
+    - type: icon
+      icon: mdi:square
+      tap_action:
+        action: call-service
+        service: remote.send_command
+        service_data:
+          entity_id: remote.living_room_roku_tv
+          command:
+            - volume_up
+      style:
+        top: 90.75%
+        left: 73.5%
+        width: 20.75%
+        height: 10.5%
+        --iron-icon-width: 100%
+        --iron-icon-height: 100%
+        --iron-icon-fill-color: transparent

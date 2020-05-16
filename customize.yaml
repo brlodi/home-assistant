@@ -1,3 +1,0 @@
-# This script should never be called directly, it's only for the matching switch 
-script.power_on_living_room_tv:
-  hidden: true

@@ -1,0 +1,101 @@
+type: vertical-stack
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        icon: mdi:circle
+        color: transparent
+        size: 25%
+        action: service
+        service:
+          domain: media_player
+          action: select_source
+          data:
+            entity_id: media_player.living_room_media_center
+            source: YouTube
+        style:
+          - background-image: url('/local/images/logos/youtube.svg')
+          - background-position: center
+          - background-size: contain
+          - background-repeat: no-repeat
+          - background-origin: content-box
+      - type: custom:button-card
+        icon: mdi:circle
+        color: transparent
+        size: 25%
+        action: service
+        service:
+          domain: media_player
+          action: select_source
+          data:
+            entity_id: media_player.living_room_media_center
+            source: Netflix
+        style:
+          - background-image: url('/local/images/logos/netflix.svg')
+          - background-position: center
+          - background-size: contain
+          - background-repeat: no-repeat
+          - background-origin: content-box
+      - type: custom:button-card
+        icon: mdi:circle
+        color: transparent
+        size: 25%
+        action: service
+        service:
+          domain: media_player
+          action: select_source
+          data:
+            entity_id: media_player.living_room_media_center
+            source: Amazon Prime Video
+        style:
+          - background-image: url('/local/images/logos/prime-video.svg')
+          - background-position: center
+          - background-size: contain
+          - background-repeat: no-repeat
+          - background-origin: content-box
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        icon: mdi:circle
+        color: transparent
+        size: 25%
+        action: service
+        service:
+          domain: media_player
+          action: select_source
+          data:
+            entity_id: media_player.living_room_media_center
+            source: Xbox One
+        style:
+          - background-image: url('/local/images/logos/xbox-one.svg')
+          - background-position: center
+          - background-size: contain
+          - background-repeat: no-repeat
+          - background-origin: content-box
+      - type: custom:button-card
+        icon: mdi:monitor
+        size: 25%
+        action: service
+        service:
+          domain: media_player
+          action: select_source
+          data:
+            entity_id: media_player.living_room_media_center
+            source: Computer
+      - type: custom:button-card
+        icon: mdi:circle
+        color: transparent
+        size: 25%
+        action: service
+        service:
+          domain: media_player
+          action: select_source
+          data:
+            entity_id: media_player.living_room_media_center
+            source: GameCube
+        style:
+          - background-image: url('/local/images/logos/gamecube.svg')
+          - background-position: center
+          - background-size: contain
+          - background-repeat: no-repeat
+          - background-origin: content-box

@@ -1,0 +1,6 @@
+# Sengled bulbs (at least the Sengled Element Plus) report a sensor value that
+# does not seem to have any meaning
+homeassistant:
+  customize_glob:
+    'sensor.sengled_*':
+      homebridge_hidden: true

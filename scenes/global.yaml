@@ -1,0 +1,24 @@
+- name: Bedtime
+  entities:
+    media_player.living_room_media_center: off
+    light.entryway: off
+    light.living_room_ceiling_light: off
+    light.living_room_dimmer: off
+    light.living_room_lamp_2: off
+    light.dining_nook_dimmer: off
+    light.bedroom_dimmer:
+      state: on
+      transition: 5
+      brightness_pct: 15
+
+- name: Sleep
+  entities:
+    media_player.living_room_media_center: off
+    light.entryway: off
+    light.living_room_ceiling_light: off
+    light.living_room_dimmer: off
+    light.living_room_lamp_2: off
+    light.dining_nook_dimmer: off
+    light.bedroom_dimmer:
+      state: off
+      transition: 5

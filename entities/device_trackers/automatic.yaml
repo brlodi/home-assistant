@@ -1,3 +1,0 @@
-platform: automatic
-client_id: !secret api_automatic_id
-secret: !secret api_automatic_secret

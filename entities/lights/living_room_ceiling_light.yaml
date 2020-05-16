@@ -1,3 +1,0 @@
-platform: switch
-name: Living Room Ceiling Light
-entity_id: switch.tplink_hs110__living_room_ceiling_light

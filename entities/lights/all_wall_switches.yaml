@@ -1,7 +1,0 @@
-platform: group
-name: All Wall Switches
-entities:
-  - light.ge_dimmer_level_dining_nook
-  - light.ge_dimmer_level_living_room
-  - light.ge_dimmer_level_bedroom
-  - light.living_room_ceiling_light

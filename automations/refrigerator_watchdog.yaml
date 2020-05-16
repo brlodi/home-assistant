@@ -1,9 +1,0 @@
-- alias: Refigerator Watchdog
-  trigger:
-    - platform: state
-      entity_id: switch.tplink_hs110__refrigerator
-      to: "off"
-  action:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.tplink_hs110__refrigerator

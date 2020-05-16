@@ -1,146 +1,57 @@
-################################################################################
-# HOME ASSISTANT CONFIGURATION - Benjamin Lodi (brlodi@gmail.com)              #
-################################################################################
-# Running under Hass.io on HassOS                                              #
-# Last tested HassOS version:         1.9                                      #
-# Last tested supervisor version:     127                                      #
-# Last tested Home Assistant version: 0.76.1                                   #
-################################################################################
 homeassistant:
   name: Home
-  latitude: !secret home-latitude
-  longitude: !secret home-longitude
-  elevation: !secret home-elevation
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  time_zone: !secret home_tz
   unit_system: imperial
-  time_zone: !secret home-tz
-  auth_providers:
-    - type: homeassistant
-    - type: legacy_api_password
-  customize_domain: !include customize_domain.yaml
-  customize_glob: !include customize_glob.yaml
+  packages: !include_dir_named packages/
   customize: !include customize.yaml
 
-
-
-################################################################################
-# Hardware                                                                     #
-################################################################################
 zwave:
   usb_path: /dev/ttyUSB0
-  polling_interval: 30000
+  network_key: "0x1A, 0x8B, 0xAC, 0x11, 0x21, 0x3D, 0x01, 0x11, 0x11, 0x09, 0x69, 0x31, 0xA7, 0x99, 0x08, 0x0F"
   device_config_glob: !include zwave_device_config.yaml
 zha:
   usb_path: /dev/ttyUSB1
   database_path: /config/zigbee.db
 
-
-
-################################################################################
-# Front End                                                                    #
-################################################################################
-
-# Core
-auth:
-config:
-frontend:
-hassio:
-history:
 http:
-  base_url: !secret url_home_assistant
+  base_url: !secret http_base_url
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
-  api_password: !secret ha_api_password
+
+frontend:
+  javascript_version: latest
+config:
+updater:
+discovery:
+  ignore:
+    - igd
+recorder:
+  include:
+    domains:
+      - binary_sensor
+      - device_tracker
+      - group
+      - switch
+history:
 logbook:
 map:
-recorder:
-  purge_keep_days: 8
-  exclude:
-    domains:
-      - automation
-      - scene
-      - script
-      - updater
-      - weblink
-    entities:
-      - sensor.date
-      - sensor.day_of_week
-      - sensor.time
-updater:
-
-# Integrate Hass.io addons in sidebar
-panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:card-bulleted-settings-outline
-    url: !secret url_configurator
-  portainer:
-    title: Portainer
-    icon: mdi:docker
-    url: !secret url_portainer
-
-
-################################################################################
-# External Platform Integrations                                               #
-################################################################################
+lovelace:
+  mode: yaml
 
 ios:
 
-homekit:
-  auto_start: false
-  filter:
-    include_entities:
-      - binary_sensor.bedroom_window
-      - binary_sensor.dome_motion_detector_living_room_sensor
-      - binary_sensor.front_door
-      - binary_sensor.living_room_window
-      - light.ge_dimmer_level_bedroom
-      - light.ge_dimmer_level_dining_nook
-      - light.ge_dimmer_level_living_room
-      - light.ikea_tradfri_1000lm_entryway
-      - media_player.living_room
-      - script.good_night
-      - switch.tplink_hs110__bedroom_fan
-      - switch.tplink_hs110__living_room_ceiling_light
-  entity_config:
-    media_player.living_room:
-      feature_list:
-        - feature: on_off
-        - feature: play_pause
-        - feature: toggle_mute
+custom_updater:
+  track:
+    - components
+    - cards
+  card_urls:
+    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
 
-
-
-################################################################################
-# Entity & Service Configuration                                               #
-################################################################################
-
-# WARNING: this configuration method breaks the editors in the Config component
-# I don't use them because I prefer the logical separation afforded by a
-# one-item-per-file paradigm, instead of a giant list in one file. Unfortunately
-# I still need the Z-Wave configuration panel, so I can't just disable the
-# Config component.
-automation: !include_dir_merge_list automations/
-script:     !include_dir_named scripts/
-
-# Domains taking lists of entities
-binary_sensor:  !include_dir_list entities/binary_sensors
-device_tracker: !include_dir_list entities/device_trackers
-light:          !include_dir_list entities/lights
-media_player:   !include_dir_list entities/media_players
-scene:          !include_dir_list scenes
-sensor:         !include_dir_list entities/sensors
-switch:         !include_dir_list entities/switches
-weather:        !include_dir_list entities/weather
-
-# Domains taking dictionaries of named entities (each filename becomes a key)
-group:          !include_dir_named groups
-input_boolean:  !include_dir_named entities/inputs_boolean
-input_datetime: !include_dir_named entities/inputs_datetime
-input_number:   !include_dir_named entities/inputs_number
-rest_command:   !include_dir_named entities/rest_commands
-shell_command:  !include_dir_named entities/shell_commands
-timer:          !include_dir_named entities/timers
-zone:           !include_dir_named zones
-
-# Standalone domains
-sun:
+automation: !include automations.yaml
+group: !include groups.yaml
+scene: !include_dir_merge_list scenes/
+script: !include scripts.yaml
+zone: !include zones.yaml
